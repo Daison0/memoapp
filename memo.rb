@@ -6,13 +6,12 @@ memo_type = gets.to_i
 if memo_type == 1
 
   puts "拡張子を除いたファイル名を記入してください"
-  file_name = gets.chomp
+  file_name = gets.chomp.to_s
   puts "メモの内容を記入してください"
   puts "完了したらCtrl+Dを押します"
-  str = STDIN.gets
-  memo = str
-  File.open("#{file_name}.csv","w") do |csv|
-    csv.puts ["#{memo}"]
+  memo = $stdin.read
+  CSV.open("#{file_name}.csv","w") do |csv|
+    csv.puts [memo]
   end
 end
 
